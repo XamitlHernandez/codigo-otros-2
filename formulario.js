@@ -1,34 +1,31 @@
-var formulario = document.querySelector("#form")
+let formulario = document.querySelector("form") // form no es una clase ni id es un elemento 
 
-formulario.onsubmit = function(e) {
+formulario.addEventListener("submit", (event) => { // para llamar a una accion desde el script se hace por medio de un eventlistenner
 
-  e.prevent();
+  event.preventDefault(); // Se escribe de esta manera el metodo y cambiamos el nmombre a evento por que e ya esta declarado
   
-  var n = formulario.elements[0]
-  var e = formulario.elements[1]
-  var na = formulario.elements[2]
+  let n = formulario.elements[0] // para declarar variables usamos let
+  let e = formulario.elements[1]
+  let na = formulario.elements[2]
 
-  var nombre = n.value
-  var edad = e.value
+  let nombre = n.value
+  let edad = e.value
 
-  var i = na.selectedIndex
-  var nacionalidad = na.options[i].value
-  console.log(nombre, edad)
-  console.log(nacionalidad)
+  let i = na.selectedIndex
+  let nacionalidad = na.options[i].value
+  console.log(nombre);
+  console.log(edad);
+  console.log(nacionalidad);
 
   if (nombre.length === 0) {
     n.classList.add("error")
   }
   if (edad < 18 || edad > 120) {
     e.classList.add("error")
+  } else{
+    agregarInvitado(nombre, edad, nacionalidad)
   }
-
-if (nombre.length > 0 
-  && (edad > 18 
-    && edad < 120) ) {
-  agregarInvitado(nombre, edad, nacionalidad)
-  }
-}
+})
 
 var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
@@ -52,10 +49,10 @@ function agregarInvitado(nombre, edad, nacionalidad) {
     nacionalidad = "Peruana"
   }
 
-var lista = document.getElementById("lista-de-invitados")
+let lista = document.getElementById("lista-de-invitados") // no exixtia un id relacionado con el elmento lista
 
-var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+let elementoLista = document.createElement("div")
+elementoLista.classList.add("elemento-lista") // adeed no es una funcion se cambia a add
 lista.appendChild(elementoLista)
 
 var spanNombre = document.createElement("span")
